@@ -24,7 +24,7 @@ public class DataGenerator {
                 gender = Gender.MALE;
             }
             State state = State.values()[i];
-            USER_LIST.add(new User(new Faker().name().firstName(), new Faker().name().lastName(), new Faker().number().numberBetween(18, 75), gender, new Faker().address().fullAddress(), state, isMarried));
+            USER_LIST.add(new User(new Faker().name().firstName(), new Faker().name().lastName(), new Faker().number().numberBetween(18, 75),new Faker().internet().emailAddress(), gender, new Faker().address().fullAddress(), state, isMarried));
         }
     }
 

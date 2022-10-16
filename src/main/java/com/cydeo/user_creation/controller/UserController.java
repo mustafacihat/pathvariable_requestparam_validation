@@ -7,10 +7,7 @@ import com.cydeo.user_creation.model.User;
 import com.cydeo.user_creation.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -42,6 +39,24 @@ public class UserController {
         userService.save(user);
 
         return "redirect:/user/register";
+    }
+
+    @GetMapping("/update/{email}")
+    public String updateUser(@PathVariable String email, Model model) {
+
+        model.addAttribute("user", userService.findByEmail(email));
+        model.addAttribute("states", State.values());
+
+
+        return "/user/update-page";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(User user) {
+        userService.update(user);
+
+        return "redirect:/user/register";
+
     }
 
 }

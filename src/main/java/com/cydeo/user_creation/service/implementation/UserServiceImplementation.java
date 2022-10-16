@@ -19,4 +19,17 @@ public class UserServiceImplementation implements UserService {
     public void save(User user) {
         DataGenerator.USER_LIST.add(user);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return getUsers().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElseThrow();
+    }
+
+    @Override
+    public void update(User user) {
+        User userInDB = findByEmail(user.getEmail());
+        getUsers().remove(userInDB);
+        save(user);
+    }
+
 }

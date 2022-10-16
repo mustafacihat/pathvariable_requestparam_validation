@@ -10,4 +10,9 @@ public interface UserService {
     public List<User> getUsers();
 
     public void save(User user);
+
+    User findByEmail(String email);
+
+    void update(User user);
+
 }
