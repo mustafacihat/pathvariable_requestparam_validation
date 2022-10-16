@@ -32,4 +32,9 @@ public class UserServiceImplementation implements UserService {
         save(user);
     }
 
+    @Override
+    public void deleteByEmail(String email) {
+        getUsers().remove(findByEmail(email));
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.cydeo.user_creation.controller;
 
 
-
 import com.cydeo.user_creation.enums.State;
 import com.cydeo.user_creation.model.User;
 import com.cydeo.user_creation.service.UserService;
@@ -35,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@ModelAttribute  User user) {
+    public String createUser(@ModelAttribute User user) {
         userService.save(user);
 
         return "redirect:/user/register";
@@ -57,6 +56,22 @@ public class UserController {
 
         return "redirect:/user/register";
 
+    }
+
+    @GetMapping("/{email}")
+    public String getUser(@PathVariable String email, Model model) {
+
+        model.addAttribute("user", userService.findByEmail(email));
+
+        return "/user/user-page";
+    }
+
+    @GetMapping("/delete/{email}")
+    public String deleteUser(@PathVariable String email){
+
+        userService.deleteByEmail(email);
+
+        return "redirect:/user/register";
     }
 
 }

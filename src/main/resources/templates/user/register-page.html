@@ -54,7 +54,7 @@
                 <td th:text="${user.address}"></td>
                 <td th:text="${user.state.name +', '+ user.state.abbreviation}"></td>
                 <td class="actions">
-                    <a>
+                    <a th:href="@{/user/{email}(email=${user.email})}">
                         <button type="button" class="btn btn-secondary btn-sm">Read
                         </button>
                     </a>
@@ -62,7 +62,7 @@
                         <button type="button" class="btn btn-warning btn-sm">Update
                         </button>
                     </a>
-                    <a>
+                    <a th:href="@{/user/delete/{email}(email=${user.email})}">
                         <button type="button" class="btn btn-danger btn-sm">Delete
                         </button>
                     </a>
