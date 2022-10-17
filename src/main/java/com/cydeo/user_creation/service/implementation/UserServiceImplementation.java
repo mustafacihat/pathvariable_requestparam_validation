@@ -7,6 +7,7 @@ import com.cydeo.user_creation.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -35,6 +36,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public void deleteByEmail(String email) {
         getUsers().remove(findByEmail(email));
+    }
+
+    @Override
+    public List<User> findAllUsersWithFirstName(String firstName) {
+        return getUsers().stream().filter(user -> user.getFirstName().contains(firstName)).collect(Collectors.toList());
     }
 
 }

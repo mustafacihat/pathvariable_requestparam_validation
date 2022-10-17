@@ -121,7 +121,7 @@
                     </span>
                     <h5 class="mt-2 mb-0" th:text="${user.firstName + ' ' + user.lastName}"></h5>
                     <span th:text="'age: ' + ${user.age} + ' - email: ' + ${user.email}"></span>
-                    <span  th:text="${user.married} ? ' - married' : ' - not married'"></span>
+                    <span th:text="${user.married} ? ' - married' : ' - not married'"></span>
 
                     <div class="px-4 mt-1">
                         <p class="fonts" th:text="'Address: ' + ${user.address} + ' ' + ${user.state}"></p>

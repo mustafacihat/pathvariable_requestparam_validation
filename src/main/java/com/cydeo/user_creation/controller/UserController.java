@@ -74,4 +74,11 @@ public class UserController {
         return "redirect:/user/register";
     }
 
+    @GetMapping
+    public String getAllWithFirstName(@RequestParam("search") String search, Model model) {
+        model.addAttribute("users", userService.findAllUsersWithFirstName(search));
+
+        return "/user/register-page";
+    }
+
 }

@@ -17,4 +17,6 @@ public interface UserService {
 
     void deleteByEmail(String email);
 
+    List<User> findAllUsersWithFirstName(String firstName);
+
 }

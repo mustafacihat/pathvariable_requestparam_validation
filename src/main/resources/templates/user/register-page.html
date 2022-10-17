@@ -21,6 +21,13 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/user/create-page}">YOU CAN REGISTER NEW USER</a>
+        <form th:action="@{/user}" method="get">
+            <label>
+                <input type="text" placeholder="search first name" th:name="search">
+            </label>
+            <button type="submit">Search</button>
+        </form>
+
     </div>
 </nav>
 
@@ -28,7 +35,9 @@
 
     <div class="row">
         <div class="row d-flex justify-content-center">
-            <h2 class="text-center">ALL USERS</h2>
+            <a th:href="@{/user/register}">
+                <h2 class="text-center">ALL USERS</h2>
+            </a>
         </div>
         <table class="table">
             <thead>

@@ -31,36 +31,66 @@
 
                 <div class="col-md-3">
                     <label for="validationDefault01" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="validationDefault01" th:field="*{firstName}" required>
+                    <input type="text" class="form-control" id="validationDefault01" th:field="*{firstName}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('firstName')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('firstName')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <label for="validationDefault02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationDefault02" th:field="*{lastName}" required>
+                    <input type="text" class="form-control" id="validationDefault02" th:field="*{lastName}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('lastName')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('lastName')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row" style="margin-top: 1em">
                 <div class="col-md-3">
                     <label for="validationDefault05" class="form-label">Address</label>
-                    <textarea type="text" class="form-control" id="validationDefault05" th:field="*{address}"
-                              required></textarea>
+                    <textarea type="text" class="form-control" id="validationDefault05" th:field="*{address}"></textarea>
+                    <div class="text-danger" th:if="${#fields.hasErrors('address')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('address')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-3">
-                    <label for="validationDefault02" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="validationDefault08" th:field="*{email}" required>
+                    <label for="validationDefault05" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="validationDefault07" th:field="*{email}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('email')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('email')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row" style="margin-top: 1em">
                 <div class="col-md-3">
                     <label for="validationDefault04" class="form-label">State</label>
-                    <select class="form-select" id="validationDefault04" th:field="*{state}" required>
+                    <select class="form-select" id="validationDefault04" th:field="*{state}">
+                        <option value="' '">Select State</option>
                         <option th:each="theState:${states}" th:value="${theState}" th:text="${theState}"></option>
                     </select>
+                    <div class="text-danger" th:if="${#fields.hasErrors('state')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('state')}">This field must have a real state. Change Select State!!!</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2">
                     <label for="validationDefaultUsername" class="form-label">Age</label>
                     <div class="input-group">
                         <input type="number" class="form-control" id="validationDefaultUsername"
-                               aria-describedby="inputGroupPrepend2" th:field="*{age}" required>
+                               aria-describedby="inputGroupPrepend2" th:field="*{age}">
+                    </div>
+                    <div class="text-danger" th:if="${#fields.hasErrors('age')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('age')}" th:text="${error}"></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -70,11 +100,11 @@
                     <label class="form-label">Gender</label>
                     <br>
                     <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked"
-                           value="FEMALE" th:field="*{gender}" required>
+                           value="FEMALE" th:field="*{gender}">
                     <label class="form-check-label" for="validationFormCheck2">Female</label>
                     <br>
                     <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked"
-                           value="MALE" th:field="*{gender}" required>
+                           value="MALE" th:field="*{gender}">
                     <label class="form-check-label" for="validationFormCheck3">Male</label>
                 </div>
                 <div class="col-md-2">
