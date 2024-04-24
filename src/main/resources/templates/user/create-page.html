@@ -28,7 +28,6 @@
     <form th:action="@{/user/create}" method="post" th:object="${user}" class="row g-3">
         <div class="col-8">
             <div class="row" style="margin-top: 1em">
-
                 <div class="col-md-3">
                     <label for="validationDefault01" class="form-label">First name</label>
                     <input type="text" class="form-control" id="validationDefault01" th:field="*{firstName}">
@@ -50,8 +49,28 @@
             </div>
             <div class="row" style="margin-top: 1em">
                 <div class="col-md-3">
+                    <label for="validationDefault0" class="form-label">Nickname</label>
+                    <input type="text" class="form-control" id="validationDefault0" th:field="*{securityModel.nickName}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('securityModel.nickName')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('securityModel.nickName')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault022" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="validationDefault022" th:field="*{securityModel.password}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('securityModel.password')}">
+                        <ul>
+                            <li th:each="error: ${#fields.errors('securityModel.password')}" th:text="${error}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1em">
+                <div class="col-md-3">
                     <label for="validationDefault05" class="form-label">Address</label>
-                    <textarea type="text" class="form-control" id="validationDefault05" th:field="*{address}"></textarea>
+                    <textarea class="form-control" id="validationDefault05" th:field="*{address}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('address')}">
                         <ul>
                             <li th:each="error: ${#fields.errors('address')}" th:text="${error}"></li>
@@ -72,7 +91,7 @@
                 <div class="col-md-3">
                     <label for="validationDefault04" class="form-label">State</label>
                     <select class="form-select" id="validationDefault04" th:field="*{state}">
-                        <option value="' '">Select State</option>
+                        <option value="''">Select State</option>
                         <option th:each="theState:${states}" th:value="${theState}" th:text="${theState}"></option>
                     </select>
                     <div class="text-danger" th:if="${#fields.hasErrors('state')}">

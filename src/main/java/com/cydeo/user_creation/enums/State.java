@@ -25,10 +25,10 @@ public enum State {
             "Unknown", "");
 
 
-    private String name;
+    private final String name;
 
 
-    private String abbreviation;
+    private final String abbreviation;
 
 
 }

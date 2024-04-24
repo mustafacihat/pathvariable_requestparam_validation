@@ -6,7 +6,10 @@ import com.cydeo.user_creation.model.User;
 import com.cydeo.user_creation.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -34,7 +37,11 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(@ModelAttribute User user) {
+    public String createUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("states", State.values());
+            return "/user/create-page";
+        }
         userService.save(user);
 
         return "redirect:/user/register";
@@ -51,7 +58,12 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(User user) {
+    public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("states", State.values());
+            return "/user/update-page";
+        }
         userService.update(user);
 
         return "redirect:/user/register";
@@ -67,7 +79,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{email}")
-    public String deleteUser(@PathVariable String email){
+    public String deleteUser(@PathVariable String email) {
 
         userService.deleteByEmail(email);
 
